@@ -1,10 +1,12 @@
 {
   "store": {
     "featureOne": {
-      "string": "JSON F1"
+      "active": true,
+      "param": "JSON F1"
     },
     "featureTwo": {
-      "string": "JSON F2"
+      "active": true,
+      "param": "JSON F2"
     }
   }
 }

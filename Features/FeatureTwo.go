@@ -5,11 +5,11 @@ import (
 	"sync"
 )
 
-func feature2(configurationParams string) func(group *sync.WaitGroup) {
+func configureFeatureTwo(model featureTwo) func(group *sync.WaitGroup) {
 
 	return func(group *sync.WaitGroup) {
 
-		log.Println(configurationParams)
+		log.Println(model.Param)
 		group.Done()
 	}
 }
