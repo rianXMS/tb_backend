@@ -5,7 +5,7 @@ import (
 	"sync"
 )
 
-func configureFeatureOne(model featureOne) func(group *sync.WaitGroup) {
+func configureFeatureOne(model modelFeatureOne) func(group *sync.WaitGroup) {
 
 	return func(group *sync.WaitGroup) {
 
