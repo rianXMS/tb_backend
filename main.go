@@ -11,8 +11,9 @@ func main() {
 
 	for i := range a {
 		fmt.Printf("Executing %d\n", i)
-		go a[i]()
+		a[i]()
 	}
+
 }
 func test() {
 	fmt.Printf("Test")

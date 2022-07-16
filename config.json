@@ -1,0 +1,10 @@
+{
+  "store": {
+    "featureOne": {
+      "string": "JSON F1"
+    },
+    "featureTwo": {
+      "string": "JSON F2"
+    }
+  }
+}

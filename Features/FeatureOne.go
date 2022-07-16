@@ -1,12 +1,13 @@
 package Features
 
 import (
-	"log"
+	"fmt"
 )
 
 func feature1(configurationParams string) func() {
 
 	return func() {
-		log.Println(configurationParams)
+
+		fmt.Println(configurationParams)
 	}
 }
