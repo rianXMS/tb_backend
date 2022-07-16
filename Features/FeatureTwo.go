@@ -2,13 +2,14 @@ package Features
 
 import (
 	"log"
-	"os"
+	"sync"
 )
 
-func feature2(configurationParams string) func() {
+func feature2(configurationParams string) func(group *sync.WaitGroup) {
 
-	return func() {
-		log.SetOutput(os.Stdout)
-		println(configurationParams)
+	return func(group *sync.WaitGroup) {
+
+		log.Println(configurationParams)
+		group.Done()
 	}
 }

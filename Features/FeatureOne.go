@@ -1,13 +1,15 @@
 package Features
 
 import (
-	"fmt"
+	"log"
+	"sync"
 )
 
-func feature1(configurationParams string) func() {
+func feature1(configurationParams string) func(group *sync.WaitGroup) {
 
-	return func() {
+	return func(group *sync.WaitGroup) {
 
-		fmt.Println(configurationParams)
+		log.Println(configurationParams)
+		group.Done()
 	}
 }

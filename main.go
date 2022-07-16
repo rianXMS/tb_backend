@@ -1,20 +1,22 @@
 package main
 
 import (
-	"fmt"
+	"log"
+	"sync"
 	"tb_backend/Features"
 )
 
 func main() {
-
-	var a = Features.Load()
-
-	for i := range a {
-		fmt.Printf("Executing %d\n", i)
-		a[i]()
-	}
-
+	runModules()
 }
-func test() {
-	fmt.Printf("Test")
+
+func runModules() {
+	featureGroup := sync.WaitGroup{}
+	a := Features.Load()
+	for i := range a {
+		featureGroup.Add(1)
+		log.Printf("Executing %d\n", i)
+		go a[i](&featureGroup)
+		featureGroup.Wait()
+	}
 }
