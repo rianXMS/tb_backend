@@ -1,12 +1,18 @@
 {
-  "store": {
-    "featureOne": {
-      "active": true,
-      "param": "JSON F1"
-    },
+    "featureOne": [
+      {
+        "active": true,
+        "interval": 10,
+        "param": "JSON F1"
+      },
+      {
+        "active": false,
+        "interval": 20,
+        "param": "INACTIVE-CONFIGURATION"
+      }
+    ],
     "featureTwo": {
       "active": true,
       "param": "JSON F2"
     }
   }
-}
