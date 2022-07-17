@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 	"sync"
-	"tb_backend/Features"
+	"tb_backend/features"
 )
 
 func main() {
@@ -12,7 +12,7 @@ func main() {
 
 func runModules() {
 	featureGroup := sync.WaitGroup{}
-	a := Features.Load()
+	a := features.Load()
 	for i := range a {
 		featureGroup.Add(1)
 		log.Printf("Executing %d\n", i+1)

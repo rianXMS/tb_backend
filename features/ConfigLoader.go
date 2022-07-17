@@ -1,11 +1,11 @@
-package Features
+package features
 
 import (
 	"encoding/json"
 	"io"
-	"log"
 	"os"
 	"sync"
+	"tb_backend/util"
 )
 
 const configPath = "config.json"
@@ -28,21 +28,16 @@ func Load() []func(group *sync.WaitGroup) {
 	return model
 }
 
-func errorHandler(err error) {
-	if err != nil {
-		log.Fatal(err)
-	}
-}
-
 func loadFile(path string) config {
 	var store config
 	//Loads JSON file
 	jsonFile, errJSON := os.Open(path)
-	errorHandler(errJSON)
+
+	util.ErrorHandler(errJSON)
 	//Creates byte-stream
 	byteStream, errBYTE := io.ReadAll(jsonFile)
-	errorHandler(errBYTE)
+	util.ErrorHandler(errBYTE)
 	//Interprets byte-stream to JSON
-	errorHandler(json.Unmarshal(byteStream, &store))
+	util.ErrorHandler(json.Unmarshal(byteStream, &store))
 	return store
 }

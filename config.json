@@ -2,17 +2,20 @@
     "featureOne": [
       {
         "active": true,
+        "ID": "b6b9a354-c0b6-4ea4-8da9-d609f10608f5",
         "interval": 10,
         "param": "JSON F1"
       },
       {
         "active": false,
+        "ID": "3314f7c1-b2dc-483b-96fa-e4e1b566c43a",
         "interval": 20,
         "param": "INACTIVE-CONFIGURATION"
       }
     ],
     "featureTwo": {
       "active": true,
+      "ID" : "365b03e5-5ab4-485e-9fc0-495d67ed4b78",
       "param": "JSON F2"
     }
   }
