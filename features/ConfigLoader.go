@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"io"
 	"os"
-	"sync"
 	"tb_backend/util"
 )
 
@@ -14,18 +13,26 @@ const configPath = "config.json"
 //Reads the configuration, based on given JSON file and then creates modules.
 //Returns created modules, with added WaitGroup to support concurrency.
 //**
-func Load() []func(group *sync.WaitGroup) {
-	var model []func(group *sync.WaitGroup)
+func Load() []Container {
+	var containers []Container
 	store := loadFile(configPath)
 
 	//Load Module One
 	for i := range store.ModelFeatureOne {
-		model = append(model, configureFeatureOne(store.ModelFeatureOne[i]))
+		containers = append(containers, Container{
+			ID:        store.ModelFeatureOne[i].ID,
+			Terminate: false,
+			Runnable:  configureFeatureOne(store.ModelFeatureOne[i]),
+		})
 	}
 	//Load Module Two
-	model = append(model, configureFeatureTwo(store.ModelFeatureTwo))
+	containers = append(containers, Container{
+		ID:        store.ModelFeatureTwo.ID,
+		Terminate: false,
+		Runnable:  configureFeatureTwo(store.ModelFeatureTwo),
+	})
 
-	return model
+	return containers
 }
 
 func loadFile(path string) config {

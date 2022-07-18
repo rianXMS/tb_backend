@@ -16,7 +16,7 @@ func runModules() {
 	for i := range a {
 		featureGroup.Add(1)
 		log.Printf("Executing %d\n", i+1)
-		go a[i](&featureGroup)
+		go a[i].Runnable(&featureGroup, &a[i].Terminate)
 		featureGroup.Wait()
 	}
 }
