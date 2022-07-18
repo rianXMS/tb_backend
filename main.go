@@ -12,11 +12,11 @@ func main() {
 
 func runModules() {
 	featureGroup := sync.WaitGroup{}
-	a := features.Load()
-	for i := range a {
+	containers := features.GetContainers()
+	for i := range containers {
 		featureGroup.Add(1)
 		log.Printf("Executing %d\n", i+1)
-		go a[i].Runnable(&featureGroup, &a[i].Terminate)
+		go containers[i].Runnable(&featureGroup, &containers[i].Terminate)
 		featureGroup.Wait()
 	}
 }

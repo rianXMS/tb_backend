@@ -9,12 +9,13 @@ import (
 
 const configPath = "config.json"
 
+var containers []Container
+
 // Load
 //Reads the configuration, based on given JSON file and then creates modules.
 //Returns created modules, with added WaitGroup to support concurrency.
 //**
-func Load() []Container {
-	var containers []Container
+func load() {
 	store := loadFile(configPath)
 
 	//Load Module One
@@ -31,8 +32,6 @@ func Load() []Container {
 		Terminate: false,
 		Runnable:  configureFeatureTwo(store.ModelFeatureTwo),
 	})
-
-	return containers
 }
 
 func loadFile(path string) config {
@@ -47,4 +46,8 @@ func loadFile(path string) config {
 	//Interprets byte-stream to JSON
 	util.ErrorHandler(json.Unmarshal(byteStream, &store))
 	return store
+}
+func GetContainers() []Container {
+	load()
+	return containers
 }
